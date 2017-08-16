@@ -1,6 +1,6 @@
 const fs = require('fs');
 var assert = require('assert');
-var app = require('./app.js');
+var runCli = require('./cli');
 
 let origArgv = undefined;
 
@@ -20,12 +20,11 @@ function addCliArguments(arguments) {
 }
 
 describe('SquirrelApp', function() {
-
   it('create RELEASES file if it doesnt exist', function() {
     fs.unlink('RELEASES.test.json');
 
-    addCliArguments("-m RELEASES.test.json --file foo.zip --version 0.1.1 --remote-path https://localhost/");
-    app.main();
+    addCliArguments("--json-file RELEASES.test.json --app-zip foo.zip --version 0.1.1 --remote-path https://localhost/");
+    runCli();
 
     var data = fs.readFileSync('RELEASES.test.json', 'utf8');
     var fileContent = JSON.parse(data);
@@ -33,10 +32,9 @@ describe('SquirrelApp', function() {
     assert.equal(fileContent.releases[0].version, '0.1.1');
   });
 
-  it('add a new release', function()
-  {
-    addCliArguments("-m RELEASES.test.json --file foo.zip --version 0.1.4 --remote-path https://localhost/");
-    app.main();
+  it('add a new release', function() {
+    addCliArguments("--json-file RELEASES.test.json --app-zip foo.zip --version 0.1.4 --remote-path https://localhost/");
+    runCli();
 
     var data = fs.readFileSync('RELEASES.test.json', 'utf8');
     var fileContent = JSON.parse(data);
@@ -46,10 +44,9 @@ describe('SquirrelApp', function() {
     assert.equal(fileContent.releases[1].updateTo.url, 'https://localhost/foo.zip');
   });
 
-  it('update an existing release', function()
-  {
-    addCliArguments("-m RELEASES.test.json --file bar.zip --version 0.1.4 --remote-path https://localhost/ --update");
-    app.main();
+  it('update an existing release', function() {
+    addCliArguments("--json-file RELEASES.test.json --app-zip bar.zip --version 0.1.4 --remote-path https://localhost/ --update");
+    runCli();
 
     var data = fs.readFileSync('RELEASES.test.json', 'utf8');
     var fileContent = JSON.parse(data);
@@ -58,10 +55,9 @@ describe('SquirrelApp', function() {
     assert.equal(fileContent.releases[1].updateTo.url, 'https://localhost/bar.zip');
   });
 
-  it('add another release', function()
-  {
-    addCliArguments("-m RELEASES.test.json --file foo2.zip --version 0.1.5 --remote-path https://localhost/");
-    app.main();
+  it('add another release', function() {
+    addCliArguments("--json-file RELEASES.test.json --app-zip foo2.zip --version 0.1.5 --remote-path https://localhost/");
+    runCli();
 
     var data = fs.readFileSync('RELEASES.test.json', 'utf8');
     var fileContent = JSON.parse(data);
@@ -71,10 +67,9 @@ describe('SquirrelApp', function() {
     assert.equal(fileContent.releases[2].updateTo.url, 'https://localhost/foo2.zip');
   });
 
-  it('and another release', function()
-  {
-    addCliArguments("-m RELEASES.test.json --file foo3.zip --version 0.1.6 --remote-path https://localhost/");
-    app.main();
+  it('and another release', function() {
+    addCliArguments("--json-file RELEASES.test.json --app-zip foo3.zip --version 0.1.6 --remote-path https://localhost/");
+    runCli();
 
     var data = fs.readFileSync('RELEASES.test.json', 'utf8');
     var fileContent = JSON.parse(data);
@@ -83,5 +78,4 @@ describe('SquirrelApp', function() {
     assert.equal(fileContent.releases[3].version, '0.1.6');
     assert.equal(fileContent.releases[3].updateTo.url, 'https://localhost/foo3.zip');
   });
-
 });
