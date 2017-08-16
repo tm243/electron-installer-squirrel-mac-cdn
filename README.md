@@ -37,6 +37,7 @@ createReleases(opts)
 
 ##### opts
 **Required**
+
 `zipPath` - *String*
 The `.zip` file containing your application file
 
