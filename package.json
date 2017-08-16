@@ -1,10 +1,16 @@
 {
-  "name": "app",
+  "name": "electron-installer-squirrel-mac-cdn",
+  "version": "0.0.1",
+  "main": "index.js",
+  "bin": {
+    "electron-installer-squirrel-mac=cdn": "cli.js"
+  },
   "scripts": {
     "test": "mocha test"
   },
   "dependencies": {
-    "commander": "^2.11.0"
+    "commander": "^2.11.0",
+    "debug": "^3.0.0"
   },
   "devDependencies": {
     "mocha": "^3.5.0"
