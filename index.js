@@ -25,6 +25,19 @@ module.exports = function(options) {
   const update = options.update;
   const jsonPath = options.jsonPath;
 
+  if (!remotePath) {
+    throw new Error('remotePath is a required option');
+  }
+  if (!zipPath) {
+    throw new Error('zipPath is a required option');
+  }
+  if (!version) {
+    throw new Error('version is a required option');
+  }
+  if (!jsonPath) {
+    throw new Error('jsonPath is a required option');
+  }
+
   const zipName = path.basename(zipPath);
 
   ensureFileExists(jsonPath);
