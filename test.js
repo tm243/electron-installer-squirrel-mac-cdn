@@ -21,6 +21,10 @@ function addCliArguments(arguments) {
 
 describe('SquirrelApp', function() {
 
+  after(function(){
+    fs.unlink('RELEASES.test.json');
+  });
+
   it('create RELEASES file if it doesnt exist', function() {
     fs.unlink('RELEASES.test.json');
 
