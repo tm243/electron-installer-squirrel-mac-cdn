@@ -25,6 +25,7 @@ Options:
   --version=<maj.min.pat>   The version of your application
   --remote-path=<url>       URL for remote update server, must have a trailing slash
   --update                  Update an existing release instead of making a new one
+  --notes="new features"    Notes for release (optional)
 ```
 
 ### API
@@ -50,8 +51,13 @@ The semver compatible version string to assign the given zip file
 `remotePath` - *String*
 The URL for your update server where these files will be served from, must include a trailing slash
 
+**Optional**
+
 `update` - *Boolean* - Default: `false`
 Whether to update an existing release instead of making a new one
+
+`notes` - *String*
+Release notes
 
 ## License
 
