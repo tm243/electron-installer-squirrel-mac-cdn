@@ -24,6 +24,7 @@ module.exports = function(options) {
   const version = options.version;
   const update = options.update;
   const jsonPath = options.jsonPath;
+  const notes = options.notes;
 
   if (!remotePath) {
     throw new Error('remotePath is a required option');
@@ -66,7 +67,7 @@ module.exports = function(options) {
       "version" : version,
       "updateTo" : {
         "pub_date" : pubDate,
-        "notes" : "",
+        "notes" : notes,
         "name" : version,
         "url" : `${remotePath}${zipName}`,
         "version" : version

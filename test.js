@@ -78,4 +78,17 @@ describe('SquirrelApp', function() {
     assert.equal(fileContent.releases[3].version, '0.1.6');
     assert.equal(fileContent.releases[3].updateTo.url, 'https://localhost/foo3.zip');
   });
+
+  it('and notes', function() {
+    addCliArguments("--json-file RELEASES.test.json --app-zip foo3.zip --version 0.1.7 --remote-path https://localhost/ --notes I-am-a-note ");
+    runCli();
+
+    var data = fs.readFileSync('RELEASES.test.json', 'utf8');
+    var fileContent = JSON.parse(data);
+
+    assert.equal(fileContent.currentRelease, '0.1.7');
+    assert.equal(fileContent.releases[4].version, '0.1.7');
+    assert.equal(fileContent.releases[4].updateTo.notes, 'I-am-a-note');
+  });
+
 });

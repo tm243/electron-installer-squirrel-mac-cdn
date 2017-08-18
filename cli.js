@@ -10,6 +10,7 @@ function run() {
     .option('-a, --app-zip [zip path]', 'App zip file to add to the releases file')
     .option('-v, --version [version]', 'Version of release')
     .option('-r, --remote-path [path]', 'Remote path for update server')
+    .option('-n, --notes [notes]', 'notes')
     .option('-u, --update', 'Update an existing entry')
     .parse(process.argv);
 
@@ -18,13 +19,15 @@ function run() {
   const version = program.version;
   const update = program.update || false;
   const jsonPath = path.resolve(process.cwd(), program.jsonFile);
+  const notes = program.notes;
 
   main({
     remotePath,
     zipPath,
     version,
     update,
-    jsonPath
+    jsonPath,
+    notes
   });
 }
 
