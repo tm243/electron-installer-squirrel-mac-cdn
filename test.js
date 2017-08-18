@@ -1,3 +1,7 @@
+// Copyright (c) 2017 Atlassian
+// Use of this source code is governed by the MIT license that can be
+// found in the LICENSE file.
+
 const fs = require('fs');
 var assert = require('assert');
 var runCli = require('./cli');
