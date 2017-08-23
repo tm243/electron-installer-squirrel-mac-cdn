@@ -1,6 +1,8 @@
 {
   "name": "electron-installer-squirrel-mac-cdn",
   "version": "0.0.1",
+  "author": "Thomas Moenicke",
+  "license": "MIT",
   "main": "index.js",
   "bin": {
     "electron-installer-squirrel-mac=cdn": "cli.js"
